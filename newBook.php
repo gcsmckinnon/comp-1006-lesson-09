@@ -29,25 +29,24 @@
 
     <div class="container">
       <header class="jumbotron my-5">
-        <div class="row">
-          <div class="col-5">
-            <script src="https://www.avatarapi.com/js.aspx?email=<?= $user['email'] ?>&size=128"></script>
-				
-          </div>
-
           <div class="col-7">
             <h1 class="display-4">Hello <strong><?= "{$user['first_name']} {$user['last_name']}" ?></strong></h1>
-            <p class="lead">Welcome CHAMPION!</p>
+            <p class="lead">Create a New Book</p>
             <hr class="my-4">
-            <p>
-              Your personalized experience awaits <strong>YOU!</strong>
-            </p>
           </div>
         </div>
       </header>
 
+      <form action="insertBook.php" method="post">
+        <div class="form-group">
+          <label>Title:</label>
+          <input type="text" name="title" class="form-control">
+        </div>
+        
+        <button class="btn btn-primary">Create</button>
+      </form>
+
       <a class="btn" href="logout.php">Logout</a>
-      <a class="btn" href="books.php">Books</a>
     </div>
   </body>
 </html>

@@ -18,6 +18,7 @@
 
       return $db;
     } catch (PDOException $error) {
-      return response(500, "Issue connecting: {$error->getMessage()}");
+      if (session_status() === PHP_SESSION_NONE) session_start();
+      $_SESSION['errors'][] = $error->getMessage();
     }
   }

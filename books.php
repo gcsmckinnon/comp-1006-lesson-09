@@ -10,6 +10,12 @@
 
   // Assign the user
   $user = $_SESSION['user'];
+  require("_connect.php");
+  $sql = "SELECT * FROM books WHERE userID = :userID";
+  $stmt = dbo()->prepare($sql);
+  $stmt->bindParam(':userID', $user['id'], PDO::PARAM_INT);
+  $stmt->execute();
+  $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
   
 ?>
 
@@ -29,25 +35,32 @@
 
     <div class="container">
       <header class="jumbotron my-5">
-        <div class="row">
-          <div class="col-5">
-            <script src="https://www.avatarapi.com/js.aspx?email=<?= $user['email'] ?>&size=128"></script>
-				
-          </div>
-
           <div class="col-7">
             <h1 class="display-4">Hello <strong><?= "{$user['first_name']} {$user['last_name']}" ?></strong></h1>
-            <p class="lead">Welcome CHAMPION!</p>
+            <p class="lead">Here are your books!</p>
             <hr class="my-4">
-            <p>
-              Your personalized experience awaits <strong>YOU!</strong>
-            </p>
           </div>
         </div>
       </header>
 
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <?php foreach($books as $book): ?>
+            <tr>
+              <td><?= $book['title'] ?></td>
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+
       <a class="btn" href="logout.php">Logout</a>
-      <a class="btn" href="books.php">Books</a>
+      <a class="btn" href="newBook.php">New Book</a>
     </div>
   </body>
 </html>

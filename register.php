@@ -25,7 +25,7 @@
     
     <div class="container">
       <header class="jumbotron my-5">
-        <h1 class="display-4" style="color: pink">Registration</h1>
+        <h1 class="display-4">Registration</h1>
         <p class="lead">All the fun! All the glory!</p>
         <hr class="my-4">
         <p>

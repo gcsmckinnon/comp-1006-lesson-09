@@ -15,10 +15,10 @@
 ?>
 
 <!-- Build the response boxes -->
-<?php foreach ([$errors, $successes] as $type): ?>
-  <?php if ($type && count($type) > 0): ?>
-    <div class="alert alert-danger">
-      <?php foreach ($type as $msg) echo "{$msg}<br>" ?>
+<?php foreach (["danger" => $errors, "success" => $successes] as $type => $messages): ?>
+  <?php if ($messages && count($messages) > 0): ?>
+    <div class="alert alert-<?= $type ?>">
+      <?php foreach ($messages as $msg) echo "{$msg}<br>" ?>
     </div>
   <?php endif ?>
 <?php endforeach ?>
